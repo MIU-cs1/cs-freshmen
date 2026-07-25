@@ -88,7 +88,7 @@
 
             <!-- Actions (Moodle + Login + Mobile Menu Button) -->
             <div class="flex items-center gap-2 sm:gap-3">
-                <!-- Moodle Link (Visible on Mobile now) -->
+                <!-- Moodle Link -->
                 <a href="https://moodle1.miuegypt.edu.eg/" target="_blank" class="flex items-center gap-1 text-[11px] sm:text-xs font-bold text-burgundy border border-burgundy px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-lg hover:bg-burgundy-soft transition">
                     <i data-lucide="external-link" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Moodle Portal</span><span class="sm:hidden">Moodle</span>
                 </a>
@@ -98,7 +98,7 @@
                     <i data-lucide="user-check" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> <span class="hidden sm:inline">Student Login</span><span class="sm:hidden">Login</span>
                 </button>
 
-                <!-- Mobile Hamburger Button (3 lines) -->
+                <!-- Mobile Hamburger Button -->
                 <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-gray-700 hover:text-burgundy focus:outline-none">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
@@ -486,15 +486,15 @@
                     </a>
                 </div>
 
-                <!-- Modifed to BUS Advising Center -->
+                <!-- BUS Support Center -->
                 <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm card-hover">
                     <div class="w-12 h-12 bg-gray-900 text-white rounded-xl flex items-center justify-center mb-4">
-                        <i data-lucide="briefcase" class="w-6 h-6"></i>
+                        <i data-lucide="bus" class="w-6 h-6"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-900">BUS Advising Center</h3>
-                    <p class="text-xs text-gray-500 mt-1">For electives or dual courses in business faculty.</p>
-                    <a href="mailto:bus.advisingcenter@miuegypt.edu.eg" class="inline-block mt-4 text-xs font-mono font-bold text-burgundy bg-gray-100 px-3 py-1.5 rounded-md hover:underline break-all">
-                        bus.advisingcenter@miuegypt.edu.eg
+                    <h3 class="text-lg font-bold text-gray-900">BUS Support Center</h3>
+                    <p class="text-xs text-gray-500 mt-1">For bus schedules, routes, and transportation queries.</p>
+                    <a href="mailto:bus.support@miuegypt.edu.eg" class="inline-block mt-4 text-xs font-mono font-bold text-burgundy bg-gray-100 px-3 py-1.5 rounded-md hover:underline break-all">
+                        bus.support@miuegypt.edu.eg
                     </a>
                 </div>
             </div>
@@ -591,6 +591,11 @@
         </div>
     </div>
 
+    <!-- BACK / PREVIOUS BUTTON -->
+    <button onclick="goBack()" id="back-button" class="fixed bottom-6 right-6 bg-burgundy hover:bg-burgundy-dark text-white p-3 rounded-full shadow-2xl transition z-40 flex items-center justify-center cursor-pointer">
+        <i data-lucide="arrow-left" class="w-6 h-6"></i>
+    </button>
+
     <!-- FOOTER -->
     <footer class="bg-white border-t border-gray-200 py-8 text-center mt-auto">
         <div class="max-w-7xl mx-auto px-6">
@@ -604,6 +609,26 @@
         lucide.createIcons();
 
         let isLoggedIn = false;
+        let currentPage = 'home';
+
+        // Initialize state on initial page load
+        window.addEventListener('DOMContentLoaded', () => {
+            history.replaceState({ page: 'home' }, '', '');
+        });
+
+        // Navigate Back Function using browser history
+        function goBack() {
+            window.history.back();
+        }
+
+        // Handle Browser History Back / Forward actions
+        window.addEventListener('popstate', (event) => {
+            if (event.state && event.state.page) {
+                renderPage(event.state.page);
+            } else {
+                renderPage('home');
+            }
+        });
 
         // Mobile Menu Toggle
         function toggleMobileMenu() {
@@ -626,8 +651,17 @@
             }
         }
 
-        // SPA Navigation Logic
+        // SPA Navigation Logic with History Push State
         function switchPage(pageId) {
+            if (currentPage === pageId) return;
+
+            // Push to browser history stack so back button works!
+            history.pushState({ page: pageId }, '', `#${pageId}`);
+            renderPage(pageId);
+        }
+
+        function renderPage(pageId) {
+            currentPage = pageId;
             document.querySelectorAll('.page-section').forEach(page => page.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
 
