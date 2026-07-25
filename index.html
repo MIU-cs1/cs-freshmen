@@ -62,20 +62,23 @@
         Welcome Freshmen Class of 2026 to Faculty of Computer Science | 30 Years of Academic Excellence
     </div>
 
+    <!-- HEADER -->
     <header class="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
             
-            <div class="flex items-center gap-4 cursor-pointer" onclick="switchPage('home')">
-                <div class="bg-burgundy text-white font-extrabold p-2.5 rounded-xl text-center shadow-md border-2 border-burgundy-light">
-                    <span class="block text-xl leading-none tracking-tighter">30TH</span>
-                    <span class="block text-[9px] tracking-widest border-t border-white/30 mt-1 pt-0.5">MIU ANNIVERSARY</span>
+            <!-- Logo -->
+            <div class="flex items-center gap-3 cursor-pointer" onclick="switchPage('home')">
+                <div class="bg-burgundy text-white font-extrabold p-2 rounded-xl text-center shadow-md border-2 border-burgundy-light">
+                    <span class="block text-lg sm:text-xl leading-none tracking-tighter">30TH</span>
+                    <span class="block text-[8px] sm:text-[9px] tracking-widest border-t border-white/30 mt-0.5 pt-0.5">MIU</span>
                 </div>
                 <div>
-                    <h1 class="text-xl font-extrabold text-burgundy tracking-tight">Misr International University</h1>
-                    <p class="text-xs text-gray-500 font-semibold tracking-wide">FACULTY OF COMPUTER SCIENCE</p>
+                    <h1 class="text-base sm:text-xl font-extrabold text-burgundy tracking-tight">Misr International University</h1>
+                    <p class="text-[10px] sm:text-xs text-gray-500 font-semibold tracking-wide">FACULTY OF COMPUTER SCIENCE</p>
                 </div>
             </div>
 
+            <!-- Desktop Nav Links -->
             <nav class="hidden md:flex space-x-8 text-sm font-medium">
                 <button onclick="switchPage('home')" id="nav-home" class="nav-link py-2 text-gray-600 hover:text-burgundy transition active">Home</button>
                 <button onclick="switchPage('courses')" id="nav-courses" class="nav-link py-2 text-gray-600 hover:text-burgundy transition">Courses & Materials</button>
@@ -83,32 +86,49 @@
                 <button onclick="switchPage('support')" id="nav-support" class="nav-link py-2 text-gray-600 hover:text-burgundy transition">Support Directory</button>
             </nav>
 
-            <div class="flex items-center gap-3">
-                <a href="https://moodle1.miuegypt.edu.eg/" target="_blank" class="hidden sm:flex items-center gap-1.5 text-xs font-bold text-burgundy border border-burgundy px-3.5 py-2 rounded-lg hover:bg-burgundy-soft transition">
-                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Moodle Portal
+            <!-- Actions (Moodle + Login + Mobile Menu Button) -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Moodle Link (Visible on Mobile now) -->
+                <a href="https://moodle1.miuegypt.edu.eg/" target="_blank" class="flex items-center gap-1 text-[11px] sm:text-xs font-bold text-burgundy border border-burgundy px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-lg hover:bg-burgundy-soft transition">
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Moodle Portal</span><span class="sm:hidden">Moodle</span>
                 </a>
-                <button onclick="openLoginModal()" class="bg-burgundy hover:bg-burgundy-dark text-white px-5 py-2 rounded-lg text-sm font-bold shadow-lg shadow-burgundy/20 transition flex items-center gap-2 animate-glow">
-                    <i data-lucide="user-check" class="w-4 h-4"></i> Student Login
+
+                <!-- Login Button -->
+                <button onclick="openLoginModal()" class="bg-burgundy hover:bg-burgundy-dark text-white px-3 py-1.5 sm:px-5 sm:py-2 rounded-lg text-xs sm:text-sm font-bold shadow-lg shadow-burgundy/20 transition flex items-center gap-1.5 animate-glow">
+                    <i data-lucide="user-check" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> <span class="hidden sm:inline">Student Login</span><span class="sm:hidden">Login</span>
+                </button>
+
+                <!-- Mobile Hamburger Button (3 lines) -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-gray-700 hover:text-burgundy focus:outline-none">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
             </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-4 py-3 space-y-2 shadow-lg animate-fadeIn">
+            <button onclick="switchPageMobile('home')" class="block w-full text-left py-2 px-3 text-sm font-bold text-gray-700 hover:bg-burgundy-soft hover:text-burgundy rounded-lg">Home</button>
+            <button onclick="switchPageMobile('courses')" class="block w-full text-left py-2 px-3 text-sm font-bold text-gray-700 hover:bg-burgundy-soft hover:text-burgundy rounded-lg">Courses & Materials</button>
+            <button onclick="switchPageMobile('exams')" class="block w-full text-left py-2 px-3 text-sm font-bold text-gray-700 hover:bg-burgundy-soft hover:text-burgundy rounded-lg">Past Exams Archive</button>
+            <button onclick="switchPageMobile('support')" class="block w-full text-left py-2 px-3 text-sm font-bold text-gray-700 hover:bg-burgundy-soft hover:text-burgundy rounded-lg">Support Directory</button>
         </div>
     </header>
 
     <!-- PAGE: HOME -->
     <div id="page-home" class="page-section active animate-fadeIn">
-        <section class="relative bg-gradient-to-b from-burgundy-soft via-white to-gray-50 py-20 px-6 border-b border-gray-100 overflow-hidden">
-            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
+        <section class="relative bg-gradient-to-b from-burgundy-soft via-white to-gray-50 py-12 md:py-20 px-6 border-b border-gray-100 overflow-hidden">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                <div class="space-y-4 md:space-y-6 text-center md:text-left">
                     <span class="inline-block bg-burgundy/10 text-burgundy border border-burgundy/20 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
                         CS Newcomers Academic Hub
                     </span>
-                    <h2 class="text-4xl md:text-5xl font-black text-gray-900 leading-tight">
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 leading-tight">
                         Empowering Your CS Journey at <span class="text-burgundy">MIU</span>
                     </h2>
-                    <p class="text-gray-600 text-base leading-relaxed">
+                    <p class="text-gray-600 text-sm md:text-base leading-relaxed">
                         An exclusive student-driven portal designed to streamline learning for first-year Computer Science students. Access verified summaries, past exam papers, lecture slides, and direct academic advising.
                     </p>
-                    <div class="flex flex-wrap gap-4 pt-2">
+                    <div class="flex flex-wrap justify-center md:justify-start gap-3 pt-2">
                         <button onclick="switchPage('courses')" class="bg-burgundy hover:bg-burgundy-dark text-white px-6 py-3 rounded-xl font-bold text-sm shadow-xl shadow-burgundy/20 transition flex items-center gap-2">
                             Explore Courses <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </button>
@@ -118,60 +138,60 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4 relative">
-                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-xl card-hover text-center">
-                        <div class="w-12 h-12 bg-burgundy-soft text-burgundy rounded-xl flex items-center justify-center mx-auto mb-3">
-                            <i data-lucide="book-open" class="w-6 h-6"></i>
+                <div class="grid grid-cols-2 gap-3 sm:gap-4 relative">
+                    <div class="bg-white p-5 sm:p-6 rounded-2xl border border-gray-100 shadow-xl card-hover text-center">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-burgundy-soft text-burgundy rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-3">
+                            <i data-lucide="book-open" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                         </div>
-                        <h3 class="text-3xl font-extrabold text-burgundy">7</h3>
-                        <p class="text-xs text-gray-500 font-medium mt-1">Semester 1 Subjects</p>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-burgundy">7</h3>
+                        <p class="text-[11px] sm:text-xs text-gray-500 font-medium mt-1">Semester 1 Subjects</p>
                     </div>
-                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-xl card-hover text-center">
-                        <div class="w-12 h-12 bg-burgundy-soft text-burgundy rounded-xl flex items-center justify-center mx-auto mb-3">
-                            <i data-lucide="file-text" class="w-6 h-6"></i>
+                    <div class="bg-white p-5 sm:p-6 rounded-2xl border border-gray-100 shadow-xl card-hover text-center">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-burgundy-soft text-burgundy rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-3">
+                            <i data-lucide="file-text" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                         </div>
-                        <h3 class="text-3xl font-extrabold text-burgundy">100+</h3>
-                        <p class="text-xs text-gray-500 font-medium mt-1">Summaries & Exams</p>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-burgundy">100+</h3>
+                        <p class="text-[11px] sm:text-xs text-gray-500 font-medium mt-1">Summaries & Exams</p>
                     </div>
-                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-xl card-hover text-center">
-                        <div class="w-12 h-12 bg-burgundy-soft text-burgundy rounded-xl flex items-center justify-center mx-auto mb-3">
-                            <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    <div class="bg-white p-5 sm:p-6 rounded-2xl border border-gray-100 shadow-xl card-hover text-center">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-burgundy-soft text-burgundy rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-3">
+                            <i data-lucide="shield-check" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                         </div>
-                        <h3 class="text-3xl font-extrabold text-burgundy">100%</h3>
-                        <p class="text-xs text-gray-500 font-medium mt-1">Protected Access</p>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-burgundy">100%</h3>
+                        <p class="text-[11px] sm:text-xs text-gray-500 font-medium mt-1">Protected Access</p>
                     </div>
-                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-xl card-hover text-center">
-                        <div class="w-12 h-12 bg-burgundy-soft text-burgundy rounded-xl flex items-center justify-center mx-auto mb-3">
-                            <i data-lucide="award" class="w-6 h-6"></i>
+                    <div class="bg-white p-5 sm:p-6 rounded-2xl border border-gray-100 shadow-xl card-hover text-center">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-burgundy-soft text-burgundy rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-3">
+                            <i data-lucide="award" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                         </div>
-                        <h3 class="text-3xl font-extrabold text-burgundy">30 Yrs</h3>
-                        <p class="text-xs text-gray-500 font-medium mt-1">MIU Excellence</p>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-burgundy">30 Yrs</h3>
+                        <p class="text-[11px] sm:text-xs text-gray-500 font-medium mt-1">MIU Excellence</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="max-w-7xl mx-auto px-6 py-16">
-            <div class="text-center max-w-2xl mx-auto mb-12">
+        <section class="max-w-7xl mx-auto px-6 py-12 md:py-16">
+            <div class="text-center max-w-2xl mx-auto mb-10">
                 <h3 class="text-2xl font-black text-gray-900">Designed Specifically For CS Freshmen</h3>
                 <p class="text-gray-500 text-sm mt-2">Everything you need to excel in your first semester, structured and organized in one place.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-2xl border border-gray-200/80 shadow-sm card-hover">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                <div class="bg-white p-6 md:p-8 rounded-2xl border border-gray-200/80 shadow-sm card-hover">
                     <div class="w-12 h-12 bg-burgundy text-white rounded-xl flex items-center justify-center mb-6">
                         <i data-lucide="folder-git2" class="w-6 h-6"></i>
                     </div>
                     <h4 class="text-lg font-bold text-gray-900 mb-2">Centralized Summaries</h4>
                     <p class="text-gray-500 text-sm leading-relaxed">Comprehensive chapter summaries curated by top senior CS students and reviewed for accuracy.</p>
                 </div>
-                <div class="bg-white p-8 rounded-2xl border border-gray-200/80 shadow-sm card-hover">
+                <div class="bg-white p-6 md:p-8 rounded-2xl border border-gray-200/80 shadow-sm card-hover">
                     <div class="w-12 h-12 bg-burgundy text-white rounded-xl flex items-center justify-center mb-6">
                         <i data-lucide="lock" class="w-6 h-6"></i>
                     </div>
                     <h4 class="text-lg font-bold text-gray-900 mb-2">Gated Student Access</h4>
                     <p class="text-gray-500 text-sm leading-relaxed">Strict authentication requiring official `@miuegypt.edu.eg` emails to maintain academic privacy.</p>
                 </div>
-                <div class="bg-white p-8 rounded-2xl border border-gray-200/80 shadow-sm card-hover">
+                <div class="bg-white p-6 md:p-8 rounded-2xl border border-gray-200/80 shadow-sm card-hover">
                     <div class="w-12 h-12 bg-burgundy text-white rounded-xl flex items-center justify-center mb-6">
                         <i data-lucide="headphones" class="w-6 h-6"></i>
                     </div>
@@ -184,11 +204,11 @@
 
     <!-- PAGE: COURSES -->
     <div id="page-courses" class="page-section animate-fadeIn">
-        <section class="max-w-7xl mx-auto px-6 py-12">
+        <section class="max-w-7xl mx-auto px-6 py-10">
             <div class="border-b border-gray-200 pb-6 mb-8 flex flex-col md:flex-row justify-between md:items-end gap-4">
                 <div>
                     <span class="text-xs font-bold text-burgundy uppercase tracking-widest">Academic Catalog</span>
-                    <h2 class="text-3xl font-black text-gray-900 mt-1">Semester 1 Course Modules</h2>
+                    <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mt-1">Semester 1 Course Modules</h2>
                 </div>
                 <div class="w-full md:w-72">
                     <input type="text" placeholder="Search course..." class="w-full border border-gray-300 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-burgundy">
@@ -196,7 +216,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
                 <!-- CSC 101 -->
                 <div class="bg-white border border-gray-200 rounded-2xl p-6 card-hover flex flex-col justify-between">
                     <div>
@@ -334,26 +353,25 @@
                         </button>
                     </div>
                 </div>
-
             </div>
         </section>
     </div>
 
     <!-- PAGE: EXAMS -->
     <div id="page-exams" class="page-section animate-fadeIn">
-        <section class="max-w-7xl mx-auto px-6 py-12">
+        <section class="max-w-7xl mx-auto px-6 py-10">
             <div class="border-b border-gray-200 pb-6 mb-8">
                 <span class="text-xs font-bold text-burgundy uppercase tracking-widest">Exam Preparation</span>
-                <h2 class="text-3xl font-black text-gray-900 mt-1">Past Midterms & Final Exams Bank</h2>
+                <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mt-1">Past Midterms & Final Exams Bank</h2>
             </div>
 
             <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-                <div class="p-6 bg-gray-50 border-b border-gray-200 flex flex-wrap justify-between items-center gap-4">
-                    <p class="text-sm font-semibold text-gray-700">Filter by Term / Year</p>
+                <div class="p-4 sm:p-6 bg-gray-50 border-b border-gray-200 flex flex-wrap justify-between items-center gap-4">
+                    <p class="text-xs sm:text-sm font-semibold text-gray-700">Filter by Term / Year</p>
                     <div class="flex gap-2">
-                        <button class="bg-burgundy text-white text-xs font-bold px-4 py-2 rounded-lg">All Terms</button>
-                        <button class="bg-white border border-gray-300 text-gray-600 hover:border-burgundy text-xs font-bold px-4 py-2 rounded-lg">Fall 2025</button>
-                        <button class="bg-white border border-gray-300 text-gray-600 hover:border-burgundy text-xs font-bold px-4 py-2 rounded-lg">Spring 2025</button>
+                        <button class="bg-burgundy text-white text-xs font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg">All Terms</button>
+                        <button class="bg-white border border-gray-300 text-gray-600 hover:border-burgundy text-xs font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg">Fall 2025</button>
+                        <button class="bg-white border border-gray-300 text-gray-600 hover:border-burgundy text-xs font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg">Spring 2025</button>
                     </div>
                 </div>
 
@@ -414,10 +432,10 @@
 
     <!-- PAGE: SUPPORT -->
     <div id="page-support" class="page-section animate-fadeIn">
-        <section class="max-w-7xl mx-auto px-6 py-12">
+        <section class="max-w-7xl mx-auto px-6 py-10">
             <div class="border-b border-gray-200 pb-6 mb-8">
                 <span class="text-xs font-bold text-burgundy uppercase tracking-widest">Help & Advising</span>
-                <h2 class="text-3xl font-black text-gray-900 mt-1">Official University Contacts Directory</h2>
+                <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mt-1">Official University Contacts Directory</h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -429,7 +447,7 @@
                         </div>
                         <h3 class="text-lg font-bold text-gray-900">CS Academic Advising</h3>
                         <p class="text-xs text-gray-500 mt-1">For course registration, academic queries, & schedule changes.</p>
-                        <a href="mailto:csc.advisingcenter@miuegypt.edu.eg" class="inline-block mt-4 text-xs font-mono font-bold text-burgundy bg-burgundy-soft px-3 py-1.5 rounded-md hover:underline">
+                        <a href="mailto:csc.advisingcenter@miuegypt.edu.eg" class="inline-block mt-4 text-xs font-mono font-bold text-burgundy bg-burgundy-soft px-3 py-1.5 rounded-md hover:underline break-all">
                             csc.advisingcenter@miuegypt.edu.eg
                         </a>
                     </div>
@@ -441,7 +459,7 @@
                     </div>
                     <h3 class="text-lg font-bold text-gray-900">IT Support Center</h3>
                     <p class="text-xs text-gray-500 mt-1">For student email activation, LMS access, and campus Wi-Fi issues.</p>
-                    <a href="mailto:it.support@miuegypt.edu.eg" class="inline-block mt-4 text-xs font-mono font-bold text-burgundy bg-gray-100 px-3 py-1.5 rounded-md hover:underline">
+                    <a href="mailto:it.support@miuegypt.edu.eg" class="inline-block mt-4 text-xs font-mono font-bold text-burgundy bg-gray-100 px-3 py-1.5 rounded-md hover:underline break-all">
                         it.support@miuegypt.edu.eg
                     </a>
                 </div>
@@ -452,7 +470,7 @@
                     </div>
                     <h3 class="text-lg font-bold text-gray-900">Student Services Office</h3>
                     <p class="text-xs text-gray-500 mt-1">Official ID issuance, certificates, and student affairs.</p>
-                    <a href="mailto:ss.office@miuegypt.edu.eg" class="inline-block mt-4 text-xs font-mono font-bold text-burgundy bg-gray-100 px-3 py-1.5 rounded-md hover:underline">
+                    <a href="mailto:ss.office@miuegypt.edu.eg" class="inline-block mt-4 text-xs font-mono font-bold text-burgundy bg-gray-100 px-3 py-1.5 rounded-md hover:underline break-all">
                         ss.office@miuegypt.edu.eg
                     </a>
                 </div>
@@ -463,18 +481,19 @@
                     </div>
                     <h3 class="text-lg font-bold text-gray-900">Student Medical Clinic</h3>
                     <p class="text-xs text-gray-500 mt-1">On-campus clinic support and medical excuse submissions.</p>
-                    <a href="mailto:students.medical@miuegypt.edu.eg" class="inline-block mt-4 text-xs font-mono font-bold text-burgundy bg-gray-100 px-3 py-1.5 rounded-md hover:underline">
+                    <a href="mailto:students.medical@miuegypt.edu.eg" class="inline-block mt-4 text-xs font-mono font-bold text-burgundy bg-gray-100 px-3 py-1.5 rounded-md hover:underline break-all">
                         students.medical@miuegypt.edu.eg
                     </a>
                 </div>
 
+                <!-- Modifed to BUS Advising Center -->
                 <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm card-hover">
                     <div class="w-12 h-12 bg-gray-900 text-white rounded-xl flex items-center justify-center mb-4">
                         <i data-lucide="briefcase" class="w-6 h-6"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-900">Business Advising Center</h3>
+                    <h3 class="text-lg font-bold text-gray-900">BUS Advising Center</h3>
                     <p class="text-xs text-gray-500 mt-1">For electives or dual courses in business faculty.</p>
-                    <a href="mailto:bus.advisingcenter@miuegypt.edu.eg" class="inline-block mt-4 text-xs font-mono font-bold text-burgundy bg-gray-100 px-3 py-1.5 rounded-md hover:underline">
+                    <a href="mailto:bus.advisingcenter@miuegypt.edu.eg" class="inline-block mt-4 text-xs font-mono font-bold text-burgundy bg-gray-100 px-3 py-1.5 rounded-md hover:underline break-all">
                         bus.advisingcenter@miuegypt.edu.eg
                     </a>
                 </div>
@@ -484,7 +503,7 @@
 
     <!-- MODAL: LOGIN -->
     <div id="login-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
-        <div class="bg-white border border-gray-200 rounded-3xl w-full max-w-md p-8 relative shadow-2xl animate-fadeIn">
+        <div class="bg-white border border-gray-200 rounded-3xl w-full max-w-md p-6 sm:p-8 relative shadow-2xl animate-fadeIn">
             <button onclick="closeLoginModal()" class="absolute top-5 right-5 text-gray-400 hover:text-gray-700">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
@@ -511,9 +530,9 @@
         </div>
     </div>
 
-    <!-- MODAL: RESOURCE (SUMMARIES / SLIDES) -->
+    <!-- MODAL: RESOURCE -->
     <div id="resource-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
-        <div class="bg-white border border-gray-200 rounded-3xl w-full max-w-lg p-8 relative shadow-2xl animate-fadeIn">
+        <div class="bg-white border border-gray-200 rounded-3xl w-full max-w-lg p-6 sm:p-8 relative shadow-2xl animate-fadeIn">
             <button onclick="closeResourceModal()" class="absolute top-5 right-5 text-gray-400 hover:text-gray-700">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
@@ -521,27 +540,27 @@
             <p id="res-type-title" class="text-xs text-gray-500 mb-6">Available downloads for this section</p>
 
             <div class="space-y-3">
-                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl flex justify-between items-center">
+                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl flex justify-between items-center gap-2">
                     <div>
                         <h4 class="text-sm font-bold text-gray-800">Chapter 1 & 2 Material</h4>
                         <p class="text-[10px] text-gray-400">PDF • 4.2 MB • Updated Fall 2025</p>
                     </div>
-                    <button onclick="downloadFile('Chapter 1 & 2 Material')" class="bg-burgundy text-white text-xs font-bold px-3 py-1.5 rounded-lg">Download</button>
+                    <button onclick="downloadFile('Chapter 1 & 2 Material')" class="bg-burgundy text-white text-xs font-bold px-3 py-1.5 rounded-lg shrink-0">Download</button>
                 </div>
-                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl flex justify-between items-center">
+                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl flex justify-between items-center gap-2">
                     <div>
                         <h4 class="text-sm font-bold text-gray-800">Midterm Revision Sheet</h4>
                         <p class="text-[10px] text-gray-400">PDF • 2.8 MB • Verified Solutions</p>
                     </div>
-                    <button onclick="downloadFile('Midterm Revision Sheet')" class="bg-burgundy text-white text-xs font-bold px-3 py-1.5 rounded-lg">Download</button>
+                    <button onclick="downloadFile('Midterm Revision Sheet')" class="bg-burgundy text-white text-xs font-bold px-3 py-1.5 rounded-lg shrink-0">Download</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- MODAL: VIDEOS LIST (LIKE SLIDES) -->
+    <!-- MODAL: VIDEOS LIST -->
     <div id="video-list-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
-        <div class="bg-white border border-gray-200 rounded-3xl w-full max-w-lg p-8 relative shadow-2xl animate-fadeIn">
+        <div class="bg-white border border-gray-200 rounded-3xl w-full max-w-lg p-6 sm:p-8 relative shadow-2xl animate-fadeIn">
             <button onclick="closeVideoListModal()" class="absolute top-5 right-5 text-gray-400 hover:text-gray-700">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
@@ -549,26 +568,22 @@
             <p class="text-xs text-gray-500 mb-6">Recorded lectures & video resources</p>
 
             <div class="space-y-3">
-                <!-- Video Box 1 -->
-                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl flex justify-between items-center">
+                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl flex justify-between items-center gap-2">
                     <div>
                         <h4 class="text-sm font-bold text-gray-800">Part 1: Course Overview & Intro</h4>
                         <p class="text-[10px] text-gray-400">Video Lecture • Chapter 1</p>
                     </div>
-                    <!-- يمكنك استبدال الرابط # برابط الفيديو الخاص بك -->
-                    <a href="https://youtube.com" target="_blank" onclick="return checkLoginForVideo(event)" class="bg-burgundy hover:bg-burgundy-dark text-white text-xs font-bold px-3.5 py-1.5 rounded-lg transition flex items-center gap-1">
+                    <a href="https://youtube.com" target="_blank" onclick="return checkLoginForVideo(event)" class="bg-burgundy hover:bg-burgundy-dark text-white text-xs font-bold px-3 py-1.5 rounded-lg transition flex items-center gap-1 shrink-0">
                         <i data-lucide="external-link" class="w-3 h-3"></i> Open Video
                     </a>
                 </div>
 
-                <!-- Video Box 2 -->
-                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl flex justify-between items-center">
+                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl flex justify-between items-center gap-2">
                     <div>
                         <h4 class="text-sm font-bold text-gray-800">Part 2: Midterm Revision & Examples</h4>
                         <p class="text-[10px] text-gray-400">Video Lecture • Chapter 2 & 3</p>
                     </div>
-                    <!-- يمكنك استبدال الرابط # برابط الفيديو الخاص بك -->
-                    <a href="https://youtube.com" target="_blank" onclick="return checkLoginForVideo(event)" class="bg-burgundy hover:bg-burgundy-dark text-white text-xs font-bold px-3.5 py-1.5 rounded-lg transition flex items-center gap-1">
+                    <a href="https://youtube.com" target="_blank" onclick="return checkLoginForVideo(event)" class="bg-burgundy hover:bg-burgundy-dark text-white text-xs font-bold px-3 py-1.5 rounded-lg transition flex items-center gap-1 shrink-0">
                         <i data-lucide="external-link" class="w-3 h-3"></i> Open Video
                     </a>
                 </div>
@@ -576,11 +591,12 @@
         </div>
     </div>
 
+    <!-- FOOTER -->
     <footer class="bg-white border-t border-gray-200 py-8 text-center mt-auto">
         <div class="max-w-7xl mx-auto px-6">
             <p class="text-xs font-bold text-burgundy">FACULTY OF COMPUTER SCIENCE - MISR INTERNATIONAL UNIVERSITY</p>
             <p class="text-[11px] text-gray-400 mt-1">KM 28 Cairo-Ismailia Road - Ahmed Orabi District, Cairo, Egypt.</p>
-            <p class="text-[10px] text-gray-400 mt-3">©️ 2026 MIU Freshmen Portal. All Rights Reserved.</p>
+            <p class="text-[10px] text-gray-400 mt-3">© 2026 MIU Freshmen Portal. All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -588,6 +604,17 @@
         lucide.createIcons();
 
         let isLoggedIn = false;
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function switchPageMobile(pageId) {
+            switchPage(pageId);
+            toggleMobileMenu();
+        }
 
         // Check Login for File Downloading
         function downloadFile(fileName) {
@@ -599,7 +626,7 @@
             }
         }
 
-        // Single Page Application (SPA) Tab Switching Logic
+        // SPA Navigation Logic
         function switchPage(pageId) {
             document.querySelectorAll('.page-section').forEach(page => page.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
@@ -611,9 +638,10 @@
             if(selectedNav) selectedNav.classList.add('active');
 
             gsap.fromTo(`#page-${pageId}`, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4 });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Modal Controls
+        // Modals Logic
         function openLoginModal() {
             document.getElementById('login-modal').classList.remove('hidden');
         }
@@ -646,7 +674,6 @@
             document.getElementById('resource-modal').classList.add('hidden');
         }
 
-        // Videos Modal Control
         function openVideoListModal(course) {
             if (!isLoggedIn) {
                 alert('Access Denied: Please login with your official MIU email (@miuegypt.edu.eg) to view videos.');
