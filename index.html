@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIU CS - Freshmen Portal 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     
     <script>
@@ -601,12 +601,14 @@
         <div class="max-w-7xl mx-auto px-6">
             <p class="text-xs font-bold text-burgundy">FACULTY OF COMPUTER SCIENCE - MISR INTERNATIONAL UNIVERSITY</p>
             <p class="text-[11px] text-gray-400 mt-1">KM 28 Cairo-Ismailia Road - Ahmed Orabi District, Cairo, Egypt.</p>
-            <p class="text-[10px] text-gray-400 mt-3">© 2026 MIU Freshmen Portal. All Rights Reserved.</p>
+            <p class="text-[10px] text-gray-400 mt-3">©️ 2026 MIU Freshmen Portal. All Rights Reserved.</p>
         </div>
     </footer>
 
     <script>
-        lucide.createIcons();
+        if (typeof lucide !== "undefined") {
+            lucide.createIcons();
+        }
 
         let isLoggedIn = false;
         let currentPage = 'home';
