@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIU CS - Freshmen Portal 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        burgundy: {
+                            DEFAULT: '#800020',
+                            dark: '#5a0016',
+                            light: '#a31236',
+                            soft: '#fff0f3'
+                        }
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(15px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 15px rgba(128, 0, 32, 0.3)' },
+                            '50%': { boxShadow: '0 0 30px rgba(128, 0, 32, 0.6)' }
+                        }
+                    },
+                    animation: {
+                        fadeIn: 'fadeIn 0.5s ease-out forwards',
+                        glow: 'pulseGlow 3s infinite'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .page-section { display: none; }
+        .page-section.active { display: block; }
+        .nav-link.active {
+            color: #800020;
+            border-bottom: 3px solid #800020;
+            font-weight: 700;
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(128, 0, 32, 0.15), 0 8px 10px -6px rgba(128, 0, 32, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col selection:bg-burgundy selection:text-white">
+
+    <div class="bg-burgundy text-white text-xs py-2 px-4 text-center font-medium tracking-wide shadow-inner flex justify-center items-center gap-2">
+        <span class="bg-white text-burgundy font-bold px-2 py-0.5 rounded-full text-[10px] uppercase">New</span>
+        Welcome Freshmen Class of 2026 to Faculty of Computer Science | 30 Years of Academic Excellence
+    </div>
+
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            
+            <div class="flex items-center gap-4 cursor-pointer" onclick="switchPage('home')">
+                <div class="bg-burgundy text-white font-extrabold p-2.5 rounded-xl text-center shadow-md border-2 border-burgundy-light">
+                    <span class="block text-xl leading-none tracking-tighter">30TH</span>
+                    <span class="block text-[9px] tracking-widest border-t border-white/30 mt-1 pt-0.5">MIU ANNIVERSARY</span>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold text-burgundy tracking-tight">Misr International University</h1>
+                    <p class="text-xs text-gray-500 font-semibold tracking-wide">FACULTY OF COMPUTER SCIENCE</p>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                <button onclick="switchPage('home')" id="nav-home" class="nav-link py-2 text-gray-600 hover:text-burgundy transition active">Home</button>
+                <button onclick="switchPage('courses')" id="nav-courses" class="nav-link py-2 text-gray-600 hover:text-burgundy transition">Courses & Materials</button>
+                <button onclick="switchPage('exams')" id="nav-exams" class="nav-link py-2 text-gray-600 hover:text-burgundy transition">Past Exams Archive</button>
+                <button onclick="switchPage('support')" id="nav-support" class="nav-link py-2 text-gray-600 hover:text-burgundy transition">Support Directory</button>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="https://moodle1.miuegypt.edu.eg/" target="_blank" class="hidden sm:flex items-center gap-1.5 text-xs font-bold text-burgundy border border-burgundy px-3.5 py-2 rounded-lg hover:bg-burgundy-soft transition">
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Moodle Portal
+                </a>
+                <button onclick="openLoginModal()" class="bg-burgundy hover:bg-burgundy-dark text-white px-5 py-2 rounded-lg text-sm font-bold shadow-lg shadow-burgundy/20 transition flex items-center gap-2 animate-glow">
+                    <i data-lucide="user-check" class="w-4 h-4"></i> Student Login
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- PAGE: HOME -->
+    <div id="page-home" class="page-section active animate-fadeIn">
+        <section class="relative bg-gradient-to-b from-burgundy-soft via-white to-gray-50 py-20 px-6 border-b border-gray-100 overflow-hidden">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <span class="inline-block bg-burgundy/10 text-burgundy border border-burgundy/20 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
+                        CS Newcomers Academic Hub
+                    </span>
+                    <h2 class="text-4xl md:text-5xl font-black text-gray-900 leading-tight">
+                        Empowering Your CS Journey at <span class="text-burgundy">MIU</span>
+                    </h2>
+                    <p class="text-gray-600 text-base leading-relaxed">
+                        An exclusive student-driven portal designed to streamline learning for first-year Computer Science students. Access verified summaries, past exam papers, lecture slides, and direct academic advising.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <button onclick="switchPage('courses')" class="bg-burgundy hover:bg-burgundy-dark text-white px-6 py-3 rounded-xl font-bold text-sm shadow-xl shadow-burgundy/20 transition flex items-center gap-2">
+                            Explore Courses <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                        <button onclick="switchPage('support')" class="bg-white border-2 border-gray-200 hover:border-burgundy text-gray-700 hover:text-burgundy px-6 py-3 rounded-xl font-bold text-sm transition">
+                            Advising & Support
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 relative">
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-xl card-hover text-center">
+                        <div class="w-12 h-12 bg-burgundy-soft text-burgundy rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <i data-lucide="book-open" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-3xl font-extrabold text-burgundy">7</h3>
+                        <p class="text-xs text-gray-500 font-medium mt-1">Semester 1 Subjects</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-xl card-hover text-center">
+                        <div class="w-12 h-12 bg-burgundy-soft text-burgundy rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <i data-lucide="file-text" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-3xl font-extrabold text-burgundy">100+</h3>
+                        <p class="text-xs text-gray-500 font-medium mt-1">Summaries & Exams</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-xl card-hover text-center">
+                        <div class="w-12 h-12 bg-burgundy-soft text-burgundy rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <i data-lucide="shield-check" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-3xl font-extrabold text-burgundy">100%</h3>
+                        <p class="text-xs text-gray-500 font-medium mt-1">Protected Access</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-xl card-hover text-center">
+                        <div class="w-12 h-12 bg-burgundy-soft text-burgundy rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <i data-lucide="award" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-3xl font-extrabold text-burgundy">30 Yrs</h3>
+                        <p class="text-xs text-gray-500 font-medium mt-1">MIU Excellence</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-6 py-16">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h3 class="text-2xl font-black text-gray-900">Designed Specifically For CS Freshmen</h3>
+                <p class="text-gray-500 text-sm mt-2">Everything you need to excel in your first semester, structured and organized in one place.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl border border-gray-200/80 shadow-sm card-hover">
+                    <div class="w-12 h-12 bg-burgundy text-white rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="folder-git2" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Centralized Summaries</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">Comprehensive chapter summaries curated by top senior CS students and reviewed for accuracy.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border border-gray-200/80 shadow-sm card-hover">
+                    <div class="w-12 h-12 bg-burgundy text-white rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="lock" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Gated Student Access</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">Strict authentication requiring official `@miuegypt.edu.eg` emails to maintain academic privacy.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border border-gray-200/80 shadow-sm card-hover">
+                    <div class="w-12 h-12 bg-burgundy text-white rounded-xl flex items-center justify-center mb-6">
+                        <i data-lucide="headphones" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Direct Advising Links</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">One-click email access to CS advising, IT support, and student medical services.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PAGE: COURSES -->
+    <div id="page-courses" class="page-section animate-fadeIn">
+        <section class="max-w-7xl mx-auto px-6 py-12">
+            <div class="border-b border-gray-200 pb-6 mb-8 flex flex-col md:flex-row justify-between md:items-end gap-4">
+                <div>
+                    <span class="text-xs font-bold text-burgundy uppercase tracking-widest">Academic Catalog</span>
+                    <h2 class="text-3xl font-black text-gray-900 mt-1">Semester 1 Course Modules</h2>
+                </div>
+                <div class="w-full md:w-72">
+                    <input type="text" placeholder="Search course..." class="w-full border border-gray-300 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-burgundy">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- CSC 101 -->
+                <div class="bg-white border border-gray-200 rounded-2xl p-6 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="bg-burgundy-soft text-burgundy text-xs font-extrabold px-3 py-1 rounded-full">CS Core</span>
+                            <span class="text-xs font-mono text-gray-400">CSC 101</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Intro to CS & Programming</h3>
+                        <p class="text-gray-500 text-xs mt-2 leading-relaxed">Problem-solving, algorithmic thinking, C++ fundamentals, loops, and array manipulations.</p>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-gray-100 grid grid-cols-3 gap-1.5">
+                        <button onclick="openResourceModal('Intro to CS & Programming', 'Summaries')" class="bg-burgundy hover:bg-burgundy-dark text-white text-[11px] font-bold py-2 rounded-lg transition flex items-center justify-center gap-1">
+                            <i data-lucide="file-text" class="w-3 h-3"></i> Summaries
+                        </button>
+                        <button onclick="openResourceModal('Intro to CS & Programming', 'Slides')" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-[11px] font-bold py-2 rounded-lg transition flex items-center justify-center gap-1">
+                            <i data-lucide="presentation" class="w-3 h-3"></i> Slides
+                        </button>
+                        <button onclick="openVideoListModal('Intro to CS & Programming')" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-[11px] font-bold py-2 rounded-lg transition flex items-center justify-center gap-1">
+                            <i data-lucide="video" class="w-3 h-3"></i> Videos
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CSC 102 -->
+                <div class="bg-white border border-gray-200 rounded-2xl p-6 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="bg-burgundy-soft text-burgundy text-xs font-extrabold px-3 py-1 rounded-full">CS Core</span>
+                            <span class="text-xs font-mono text-gray-400">CSC 102</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Introduction to Computer Science</h3>
+                        <p class="text-gray-500 text-xs mt-2 leading-relaxed">Hardware architecture, binary arithmetic, operating system concepts, and network bases.</p>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-gray-100 grid grid-cols-3 gap-1.5">
+                        <button onclick="openResourceModal('Introduction to CS', 'Summaries')" class="bg-burgundy hover:bg-burgundy-dark text-white text-[11px] font-bold py-2 rounded-lg transition flex items-center justify-center gap-1">
+                            <i data-lucide="file-text" class="w-3 h-3"></i> Summaries
+                        </button>
+                        <button onclick="openResourceModal('Introduction to CS', 'Slides')" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-[11px] font-bold py-2 rounded-lg transition flex items-center justify-center gap-1">
+                            <i data-lucide="presentation" class="w-3 h-3"></i> Slides
+                        </button>
+                        <button onclick="openVideoListModal('Introduction to CS')" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-[11px] font-bold py-2 rounded-lg transition flex items-center justify-center gap-1">
+                            <i data-lucide="video" class="w-3 h-3"></i> Videos
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PHY 101 -->
+                <div class="bg-white border border-gray-200 rounded-2xl p-6 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="bg-blue-50 text-blue-700 text-xs font-extrabold px-3 py-1 rounded-full">Basic Science</span>
+                            <span class="text-xs font-mono text-gray-400">PHY 101</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Physics</h3>
+                        <p class="text-gray-500 text-xs mt-2 leading-relaxed">Classical mechanics, electromagnetism, and wave optics applied for tech students.</p>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-gray-100 grid grid-cols-3 gap-1.5">
+                        <button onclick="openResourceModal('Physics', 'Summaries')" class="bg-burgundy hover:bg-burgundy-dark text-white text-[11px] font-bold py-2 rounded-lg transition flex items-center justify-center gap-1">
+                            <i data-lucide="file-text" class="w-3 h-3"></i> Summaries
+                        </button>
+                        <button onclick="openResourceModal('Physics', 'Slides')" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-[11px] font-bold py-2 rounded-lg transition flex items-center justify-center gap-1">
+                            <i data-lucide="presentation" class="w-3 h-3"></i> Slides
+                        </button>
+                        <button onclick="openVideoListModal('Physics')" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-[11px] font-bold py-2 rounded-lg transition flex items-center justify-center gap-1">
+                            <i data-lucide="video" class="w-3 h-3"></i> Videos
+                        </button>
+                    </div>
+                </div>
+
+                <!-- MTH 100 -->
+                <div class="bg-white border border-gray-200 rounded-2xl p-6 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="bg-blue-50 text-blue-700 text-xs font-extrabold px-3 py-1 rounded-full">Mathematics</span>
+                            <span class="text-xs font-mono text-gray-400">MTH 100</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Supplementary Mathematics</h3>
+                        <p class="text-gray-500 text-xs mt-2 leading-relaxed">Functions, limits, differentiation, and integration foundations essential for computing.</p>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-gray-100 grid grid-cols-3 gap-1.5">
+                        <button onclick="openResourceModal('Supplementary Mathematics', 'Summaries')" class="bg-burgundy hover:bg-burgundy-dark text-white text-[11px] font-bold py-2 rounded-lg transition flex items-center justify-center gap-1">
+                            <i data-lucide="file-text" class="w-3 h-3"></i> Summaries
+                        </button>
+                        <button onclick="openResourceModal('Supplementary Mathematics', 'Slides')" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-[11px] font-bold py-2 rounded-lg transition flex items-center justify-center gap-1">
+                            <i data-lucide="presentation" class="w-3 h-3"></i> Slides
+                        </button>
+                        <button onclick="openVideoListModal('Supplementary Mathematics')" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-[11px] font-bold py-2 rounded-lg transition flex items-center justify-center gap-1">
+                            <i data-lucide="video" class="w-3 h-3"></i> Videos
+                        </button>
+                    </div>
+                </div>
+
+                <!-- MTH 102 -->
+                <div class="bg-white border border-gray-200 rounded-2xl p-6 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="bg-blue-50 text-blue-700 text-xs font-extrabold px-3 py-1 rounded-full">Mathematics</span>
+                            <span class="text-xs font-mono text-gray-400">MTH 102</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Probability & Statistics</h3>
+                        <p class="text-gray-500 text-xs mt-2 leading-relaxed">Discrete and continuous variables, probability distributions, sampling, and data estimation.</p>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-gray-100 grid grid-cols-3 gap-1.5">
+                        <button onclick="openResourceModal('Probability and Statistics', 'Summaries')" class="bg-burgundy hover:bg-burgundy-dark text-white text-[11px] font-bold py-2 rounded-lg transition flex items-center justify-center gap-1">
+                            <i data-lucide="file-text" class="w-3 h-3"></i> Summaries
+                        </button>
+                        <button onclick="openResourceModal('Probability and Statistics', 'Slides')" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-[11px] font-bold py-2 rounded-lg transition flex items-center justify-center gap-1">
+                            <i data-lucide="presentation" class="w-3 h-3"></i> Slides
+                        </button>
+                        <button onclick="openVideoListModal('Probability and Statistics')" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-[11px] font-bold py-2 rounded-lg transition flex items-center justify-center gap-1">
+                            <i data-lucide="video" class="w-3 h-3"></i> Videos
+                        </button>
+                    </div>
+                </div>
+
+                <!-- HUM 101/102 -->
+                <div class="bg-white border border-gray-200 rounded-2xl p-6 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="bg-emerald-50 text-emerald-700 text-xs font-extrabold px-3 py-1 rounded-full">Humanities</span>
+                            <span class="text-xs font-mono text-gray-400">HUM 101/102</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Ethics & English</h3>
+                        <p class="text-gray-500 text-xs mt-2 leading-relaxed">Professional communication, academic writing, and computing ethics in modern tech society.</p>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-gray-100 grid grid-cols-3 gap-1.5">
+                        <button onclick="openResourceModal('Ethics', 'Summaries')" class="bg-burgundy hover:bg-burgundy-dark text-white text-[11px] font-bold py-2 rounded-lg transition flex items-center justify-center gap-1">
+                            Ethics
+                        </button>
+                        <button onclick="openResourceModal('English', 'Summaries')" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-[11px] font-bold py-2 rounded-lg transition flex items-center justify-center gap-1">
+                            English
+                        </button>
+                        <button onclick="openVideoListModal('Ethics & English')" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-[11px] font-bold py-2 rounded-lg transition flex items-center justify-center gap-1">
+                            <i data-lucide="video" class="w-3 h-3"></i> Videos
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <!-- PAGE: EXAMS -->
+    <div id="page-exams" class="page-section animate-fadeIn">
+        <section class="max-w-7xl mx-auto px-6 py-12">
+            <div class="border-b border-gray-200 pb-6 mb-8">
+                <span class="text-xs font-bold text-burgundy uppercase tracking-widest">Exam Preparation</span>
+                <h2 class="text-3xl font-black text-gray-900 mt-1">Past Midterms & Final Exams Bank</h2>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+                <div class="p-6 bg-gray-50 border-b border-gray-200 flex flex-wrap justify-between items-center gap-4">
+                    <p class="text-sm font-semibold text-gray-700">Filter by Term / Year</p>
+                    <div class="flex gap-2">
+                        <button class="bg-burgundy text-white text-xs font-bold px-4 py-2 rounded-lg">All Terms</button>
+                        <button class="bg-white border border-gray-300 text-gray-600 hover:border-burgundy text-xs font-bold px-4 py-2 rounded-lg">Fall 2025</button>
+                        <button class="bg-white border border-gray-300 text-gray-600 hover:border-burgundy text-xs font-bold px-4 py-2 rounded-lg">Spring 2025</button>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-gray-600">
+                        <thead class="bg-gray-100 text-xs text-gray-700 uppercase font-bold border-b border-gray-200">
+                            <tr>
+                                <th class="p-4">Subject</th>
+                                <th class="p-4">Exam Type</th>
+                                <th class="p-4">Academic Year</th>
+                                <th class="p-4">Solution Key</th>
+                                <th class="p-4 text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            <tr class="hover:bg-burgundy-soft/50 transition">
+                                <td class="p-4 font-bold text-gray-900">Intro to CS & Programming</td>
+                                <td class="p-4"><span class="bg-red-100 text-red-800 text-[11px] font-bold px-2.5 py-0.5 rounded">Final Exam</span></td>
+                                <td class="p-4">2024 / 2025</td>
+                                <td class="p-4 text-emerald-600 font-semibold flex items-center gap-1"><i data-lucide="check-circle-2" class="w-4 h-4"></i> Available</td>
+                                <td class="p-4 text-right">
+                                    <button onclick="downloadFile('Intro to CS Final Exam')" class="bg-burgundy hover:bg-burgundy-dark text-white text-xs font-bold px-3 py-1.5 rounded-lg transition">Download</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-burgundy-soft/50 transition">
+                                <td class="p-4 font-bold text-gray-900">Supplementary Mathematics</td>
+                                <td class="p-4"><span class="bg-amber-100 text-amber-800 text-[11px] font-bold px-2.5 py-0.5 rounded">Midterm</span></td>
+                                <td class="p-4">2024 / 2025</td>
+                                <td class="p-4 text-emerald-600 font-semibold flex items-center gap-1"><i data-lucide="check-circle-2" class="w-4 h-4"></i> Available</td>
+                                <td class="p-4 text-right">
+                                    <button onclick="downloadFile('Supplementary Mathematics Midterm')" class="bg-burgundy hover:bg-burgundy-dark text-white text-xs font-bold px-3 py-1.5 rounded-lg transition">Download</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-burgundy-soft/50 transition">
+                                <td class="p-4 font-bold text-gray-900">Physics</td>
+                                <td class="p-4"><span class="bg-red-100 text-red-800 text-[11px] font-bold px-2.5 py-0.5 rounded">Final Exam</span></td>
+                                <td class="p-4">2023 / 2024</td>
+                                <td class="p-4 text-gray-400 font-medium">Pending</td>
+                                <td class="p-4 text-right">
+                                    <button onclick="downloadFile('Physics Final Exam')" class="bg-burgundy hover:bg-burgundy-dark text-white text-xs font-bold px-3 py-1.5 rounded-lg transition">Download</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-burgundy-soft/50 transition">
+                                <td class="p-4 font-bold text-gray-900">Probability & Statistics</td>
+                                <td class="p-4"><span class="bg-amber-100 text-amber-800 text-[11px] font-bold px-2.5 py-0.5 rounded">Midterm</span></td>
+                                <td class="p-4">2024 / 2025</td>
+                                <td class="p-4 text-emerald-600 font-semibold flex items-center gap-1"><i data-lucide="check-circle-2" class="w-4 h-4"></i> Available</td>
+                                <td class="p-4 text-right">
+                                    <button onclick="downloadFile('Probability & Statistics Midterm')" class="bg-burgundy hover:bg-burgundy-dark text-white text-xs font-bold px-3 py-1.5 rounded-lg transition">Download</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PAGE: SUPPORT -->
+    <div id="page-support" class="page-section animate-fadeIn">
+        <section class="max-w-7xl mx-auto px-6 py-12">
+            <div class="border-b border-gray-200 pb-6 mb-8">
+                <span class="text-xs font-bold text-burgundy uppercase tracking-widest">Help & Advising</span>
+                <h2 class="text-3xl font-black text-gray-900 mt-1">Official University Contacts Directory</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white border-2 border-burgundy/20 rounded-2xl p-6 shadow-md card-hover relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-burgundy-soft rounded-bl-full -z-0"></div>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 bg-burgundy text-white rounded-xl flex items-center justify-center mb-4 shadow-md">
+                            <i data-lucide="laptop" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900">CS Academic Advising</h3>
+                        <p class="text-xs text-gray-500 mt-1">For course registration, academic queries, & schedule changes.</p>
+                        <a href="mailto:csc.advisingcenter@miuegypt.edu.eg" class="inline-block mt-4 text-xs font-mono font-bold text-burgundy bg-burgundy-soft px-3 py-1.5 rounded-md hover:underline">
+                            csc.advisingcenter@miuegypt.edu.eg
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm card-hover">
+                    <div class="w-12 h-12 bg-gray-900 text-white rounded-xl flex items-center justify-center mb-4">
+                        <i data-lucide="wrench" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900">IT Support Center</h3>
+                    <p class="text-xs text-gray-500 mt-1">For student email activation, LMS access, and campus Wi-Fi issues.</p>
+                    <a href="mailto:it.support@miuegypt.edu.eg" class="inline-block mt-4 text-xs font-mono font-bold text-burgundy bg-gray-100 px-3 py-1.5 rounded-md hover:underline">
+                        it.support@miuegypt.edu.eg
+                    </a>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm card-hover">
+                    <div class="w-12 h-12 bg-gray-900 text-white rounded-xl flex items-center justify-center mb-4">
+                        <i data-lucide="user-check" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900">Student Services Office</h3>
+                    <p class="text-xs text-gray-500 mt-1">Official ID issuance, certificates, and student affairs.</p>
+                    <a href="mailto:ss.office@miuegypt.edu.eg" class="inline-block mt-4 text-xs font-mono font-bold text-burgundy bg-gray-100 px-3 py-1.5 rounded-md hover:underline">
+                        ss.office@miuegypt.edu.eg
+                    </a>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm card-hover">
+                    <div class="w-12 h-12 bg-gray-900 text-white rounded-xl flex items-center justify-center mb-4">
+                        <i data-lucide="heart-pulse" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900">Student Medical Clinic</h3>
+                    <p class="text-xs text-gray-500 mt-1">On-campus clinic support and medical excuse submissions.</p>
+                    <a href="mailto:students.medical@miuegypt.edu.eg" class="inline-block mt-4 text-xs font-mono font-bold text-burgundy bg-gray-100 px-3 py-1.5 rounded-md hover:underline">
+                        students.medical@miuegypt.edu.eg
+                    </a>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm card-hover">
+                    <div class="w-12 h-12 bg-gray-900 text-white rounded-xl flex items-center justify-center mb-4">
+                        <i data-lucide="briefcase" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900">Business Advising Center</h3>
+                    <p class="text-xs text-gray-500 mt-1">For electives or dual courses in business faculty.</p>
+                    <a href="mailto:bus.advisingcenter@miuegypt.edu.eg" class="inline-block mt-4 text-xs font-mono font-bold text-burgundy bg-gray-100 px-3 py-1.5 rounded-md hover:underline">
+                        bus.advisingcenter@miuegypt.edu.eg
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- MODAL: LOGIN -->
+    <div id="login-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-white border border-gray-200 rounded-3xl w-full max-w-md p-8 relative shadow-2xl animate-fadeIn">
+            <button onclick="closeLoginModal()" class="absolute top-5 right-5 text-gray-400 hover:text-gray-700">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-burgundy-soft text-burgundy rounded-2xl flex items-center justify-center mx-auto mb-3">
+                    <i data-lucide="lock" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-2xl font-black text-gray-900">MIU Student Portal</h3>
+                <p class="text-xs text-gray-500 mt-1">Enter your university credentials to verify access</p>
+            </div>
+            <form onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">MIU Email Address</label>
+                    <input type="email" id="email-input" placeholder="student@miuegypt.edu.eg" required class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-burgundy">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Password / Student ID</label>
+                    <input type="password" placeholder="••••••••" required class="w-full border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-burgundy">
+                </div>
+                <button type="submit" class="w-full bg-burgundy hover:bg-burgundy-dark text-white font-bold py-3 rounded-xl text-sm transition shadow-lg shadow-burgundy/20">
+                    Verify & Access Portal
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: RESOURCE (SUMMARIES / SLIDES) -->
+    <div id="resource-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-white border border-gray-200 rounded-3xl w-full max-w-lg p-8 relative shadow-2xl animate-fadeIn">
+            <button onclick="closeResourceModal()" class="absolute top-5 right-5 text-gray-400 hover:text-gray-700">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <h3 id="res-course-title" class="text-xl font-bold text-burgundy">Course Material</h3>
+            <p id="res-type-title" class="text-xs text-gray-500 mb-6">Available downloads for this section</p>
+
+            <div class="space-y-3">
+                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl flex justify-between items-center">
+                    <div>
+                        <h4 class="text-sm font-bold text-gray-800">Chapter 1 & 2 Material</h4>
+                        <p class="text-[10px] text-gray-400">PDF • 4.2 MB • Updated Fall 2025</p>
+                    </div>
+                    <button onclick="downloadFile('Chapter 1 & 2 Material')" class="bg-burgundy text-white text-xs font-bold px-3 py-1.5 rounded-lg">Download</button>
+                </div>
+                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl flex justify-between items-center">
+                    <div>
+                        <h4 class="text-sm font-bold text-gray-800">Midterm Revision Sheet</h4>
+                        <p class="text-[10px] text-gray-400">PDF • 2.8 MB • Verified Solutions</p>
+                    </div>
+                    <button onclick="downloadFile('Midterm Revision Sheet')" class="bg-burgundy text-white text-xs font-bold px-3 py-1.5 rounded-lg">Download</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: VIDEOS LIST (LIKE SLIDES) -->
+    <div id="video-list-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-white border border-gray-200 rounded-3xl w-full max-w-lg p-8 relative shadow-2xl animate-fadeIn">
+            <button onclick="closeVideoListModal()" class="absolute top-5 right-5 text-gray-400 hover:text-gray-700">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <h3 id="video-course-title" class="text-xl font-bold text-burgundy">Course Videos</h3>
+            <p class="text-xs text-gray-500 mb-6">Recorded lectures & video resources</p>
+
+            <div class="space-y-3">
+                <!-- Video Box 1 -->
+                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl flex justify-between items-center">
+                    <div>
+                        <h4 class="text-sm font-bold text-gray-800">Part 1: Course Overview & Intro</h4>
+                        <p class="text-[10px] text-gray-400">Video Lecture • Chapter 1</p>
+                    </div>
+                    <!-- يمكنك استبدال الرابط # برابط الفيديو الخاص بك -->
+                    <a href="https://youtube.com" target="_blank" onclick="return checkLoginForVideo(event)" class="bg-burgundy hover:bg-burgundy-dark text-white text-xs font-bold px-3.5 py-1.5 rounded-lg transition flex items-center gap-1">
+                        <i data-lucide="external-link" class="w-3 h-3"></i> Open Video
+                    </a>
+                </div>
+
+                <!-- Video Box 2 -->
+                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl flex justify-between items-center">
+                    <div>
+                        <h4 class="text-sm font-bold text-gray-800">Part 2: Midterm Revision & Examples</h4>
+                        <p class="text-[10px] text-gray-400">Video Lecture • Chapter 2 & 3</p>
+                    </div>
+                    <!-- يمكنك استبدال الرابط # برابط الفيديو الخاص بك -->
+                    <a href="https://youtube.com" target="_blank" onclick="return checkLoginForVideo(event)" class="bg-burgundy hover:bg-burgundy-dark text-white text-xs font-bold px-3.5 py-1.5 rounded-lg transition flex items-center gap-1">
+                        <i data-lucide="external-link" class="w-3 h-3"></i> Open Video
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-white border-t border-gray-200 py-8 text-center mt-auto">
+        <div class="max-w-7xl mx-auto px-6">
+            <p class="text-xs font-bold text-burgundy">FACULTY OF COMPUTER SCIENCE - MISR INTERNATIONAL UNIVERSITY</p>
+            <p class="text-[11px] text-gray-400 mt-1">KM 28 Cairo-Ismailia Road - Ahmed Orabi District, Cairo, Egypt.</p>
+            <p class="text-[10px] text-gray-400 mt-3">©️ 2026 MIU Freshmen Portal. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        let isLoggedIn = false;
+
+        // Check Login for File Downloading
+        function downloadFile(fileName) {
+            if (!isLoggedIn) {
+                alert('Access Denied: Please login with your official MIU email (@miuegypt.edu.eg) to download materials.');
+                openLoginModal();
+            } else {
+                alert(`Downloading File: ${fileName}...`);
+            }
+        }
+
+        // Single Page Application (SPA) Tab Switching Logic
+        function switchPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+
+            const selectedPage = document.getElementById(`page-${pageId}`);
+            if(selectedPage) selectedPage.classList.add('active');
+
+            const selectedNav = document.getElementById(`nav-${pageId}`);
+            if(selectedNav) selectedNav.classList.add('active');
+
+            gsap.fromTo(`#page-${pageId}`, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4 });
+        }
+
+        // Modal Controls
+        function openLoginModal() {
+            document.getElementById('login-modal').classList.remove('hidden');
+        }
+        function closeLoginModal() {
+            document.getElementById('login-modal').classList.add('hidden');
+        }
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('email-input').value;
+            if(!email.endsWith('@miuegypt.edu.eg')) {
+                alert('Access Denied: You must use your official MIU email domain (@miuegypt.edu.eg)');
+                return;
+            }
+            isLoggedIn = true;
+            alert('Verification Successful! Welcome to the MIU CS Portal.');
+            closeLoginModal();
+        }
+
+        function openResourceModal(course, type) {
+            if (!isLoggedIn) {
+                alert('Access Denied: Please login with your official MIU email (@miuegypt.edu.eg) to view materials.');
+                openLoginModal();
+                return;
+            }
+            document.getElementById('res-course-title').innerText = course;
+            document.getElementById('res-type-title').innerText = `${type} Files & Downloads`;
+            document.getElementById('resource-modal').classList.remove('hidden');
+        }
+        function closeResourceModal() {
+            document.getElementById('resource-modal').classList.add('hidden');
+        }
+
+        // Videos Modal Control
+        function openVideoListModal(course) {
+            if (!isLoggedIn) {
+                alert('Access Denied: Please login with your official MIU email (@miuegypt.edu.eg) to view videos.');
+                openLoginModal();
+                return;
+            }
+            document.getElementById('video-course-title').innerText = `${course} - Videos`;
+            document.getElementById('video-list-modal').classList.remove('hidden');
+        }
+        function closeVideoListModal() {
+            document.getElementById('video-list-modal').classList.add('hidden');
+        }
+
+        function checkLoginForVideo(e) {
+            if (!isLoggedIn) {
+                e.preventDefault();
+                alert('Access Denied: Please login with your official MIU email (@miuegypt.edu.eg) to access links.');
+                openLoginModal();
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>
